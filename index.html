@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тур в Ковров — экскурсии по старому Коврову и мерч города</title>
+<meta name="description" content="Тур в Ковров: авторские пешие экскурсии по историческому и индустриальному Коврову — купеческий базар, Торговые ряды, парк КЭЗ, фабрика Треумовых, церкви. Запись по телефону и в ВКонтакте. Фирменный мерч Коврова.">
+<meta property="og:title" content="Тур в Ковров — экскурсии по старому Коврову и мерч города">
+<meta property="og:description" content="7 авторских маршрутов по Коврову: купцы, заводы, храмы, легенды. Группы по субботам. Запись: +7 (910) 095-96-23.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://turkovrov.ru/">
+<meta property="og:image" content="https://turkovrov.ru/img/merch-scarf.webp">
+<link rel="canonical" href="https://turkovrov.ru/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Тур в Ковров",
+  "description": "Авторские пешие экскурсии по историческому и индустриальному Коврову, фирменный мерч города.",
+  "url": "https://turkovrov.ru/",
+  "telephone": "+79100959623",
+  "image": "https://turkovrov.ru/img/merch-scarf.webp",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Брюсова, 25",
+    "addressLocality": "Ковров",
+    "addressRegion": "Владимирская область",
+    "addressCountry": "RU"
+  },
+  "areaServed": "Ковров",
+  "sameAs": ["https://vk.ru/turkovrov"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- шрифты не блокируют отрисовку: media="print" + onload (у части провайдеров fonts.googleapis.com отвечает медленно) -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
+<style>
+:root{
+  --paper:#F4EEE2;
+  --paper-2:#EBE2D0;
+  --card:#FBF7EE;
+  --ink:#231A15;
+  --muted:#6B5E52;
+  --line:rgba(35,26,21,.16);
+  --brick:#8E2F20;      /* кирпич — акцент: ковровские фабрики и церковь */
+  --brick-dark:#6F2316;
+  --night:#1C1512;
+  --night-2:#261C17;
+  --on-night:#EFE6D6;
+  --on-night-muted:#B3A595;
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter:clamp(16px, 5vw, 80px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+.section{padding:clamp(56px,9vw,110px) 0}
+.section[data-tone=dark]{background:var(--night);color:var(--on-night)}
+.section[data-tone=alt]{background:var(--paper-2)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--brick)}
+[data-tone=dark] .eyebrow{color:#D98A73}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12}
+.s-title{font-size:clamp(30px,5vw,52px);margin:10px 0 16px}
+.s-lead{max-width:640px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
+[data-tone=dark] .s-lead{color:var(--on-night-muted)}
+
+/* ---------- кнопки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:999px;font:600 15px/1 var(--sans);text-decoration:none;border:1.5px solid var(--brick);background:var(--brick);color:#fff;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn:hover{background:var(--brick-dark);border-color:var(--brick-dark)}
+.btn:focus-visible,a:focus-visible{outline:3px solid #D98A73;outline-offset:3px}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+[data-tone=dark] .btn--ghost{color:var(--on-night);border-color:var(--on-night)}
+[data-tone=dark] .btn--ghost:hover{background:var(--on-night);color:var(--night)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- шапка ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(244,238,226,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:var(--serif);font-weight:700;font-size:20px;text-decoration:none;letter-spacing:.01em}
+.logo b{color:var(--brick)}
+.nav__links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav__links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav__links a:hover{color:var(--brick)}
+.nav__call{font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:9px;right:9px;height:2px;background:var(--ink);transition:transform .25s,top .25s}
+.burger span:first-child{top:15px}.burger span:last-child{top:23px}
+.nav.open .burger span:first-child{top:19px;transform:rotate(45deg)}
+.nav.open .burger span:last-child{top:19px;transform:rotate(-45deg)}
+@media (max-width:860px){
+  .burger{display:block}
+  .nav__call{display:none}
+  .nav__links{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .3s}
+  .nav.open .nav__links{max-height:440px}
+  .nav__links li a{display:block;padding:16px var(--gutter);font-size:16px;border-top:1px solid var(--line)}
+}
+
+/* ---------- первый экран ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;background:var(--night);color:var(--on-night);overflow:hidden}
+.hero::before{ /* кирпичная кладка — еле заметный фон */
+  content:"";position:absolute;inset:0;opacity:.07;
+  background:
+    linear-gradient(90deg,transparent 0 calc(100% - 2px),#fff 0) 0 0/64px 28px,
+    linear-gradient(0deg,transparent 0 calc(100% - 2px),#fff 0) 0 0/64px 28px;
+}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,var(--night),transparent)}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(42px,9vw,104px);letter-spacing:-.01em;margin:14px 0 22px}
+.hero h1 em{font-style:italic;color:#E2A08C;font-weight:500}
+.hero p{max-width:600px;font-size:clamp(17px,2vw,21px);color:var(--on-night-muted);margin-bottom:34px}
+.hero__facts{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:48px;padding-top:26px;border-top:1px solid rgba(239,230,214,.18);font-size:14px;color:var(--on-night-muted)}
+.hero__facts b{display:block;font-family:var(--serif);font-size:30px;color:var(--on-night);line-height:1.1}
+
+/* ---------- ближайшая экскурсия ---------- */
+.next{margin-top:-56px;position:relative;z-index:2}
+.ticket{display:grid;grid-template-columns:auto 1fr auto;gap:20px 34px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 32px;box-shadow:0 18px 50px rgba(35,26,21,.14)}
+.ticket__date{text-align:center;border-right:1px dashed var(--line);padding-right:34px}
+.ticket__date b{display:block;font:700 54px/1 var(--serif);color:var(--brick)}
+.ticket__date span{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ticket h2{font-size:clamp(22px,3vw,30px);margin:4px 0 6px}
+.ticket p{color:var(--muted);font-size:15px}
+.ticket[hidden]{display:none}
+@media (max-width:760px){
+  .ticket{grid-template-columns:1fr;padding:22px}
+  .ticket__date{border-right:0;border-bottom:1px dashed var(--line);padding:0 0 16px;text-align:left;display:flex;align-items:baseline;gap:14px}
+  .ticket .btn{width:100%}
+}
+
+/* ---------- маршруты ---------- */
+.routes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:44px}
+.route{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 26px 26px;display:flex;flex-direction:column;position:relative;transition:transform .25s,box-shadow .25s,border-color .25s}
+.route:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(35,26,21,.12);border-color:var(--brick)}
+.route__n{font:700 15px/1 var(--serif);color:var(--brick);letter-spacing:.08em;margin-bottom:14px}
+.route h3{font-size:22px;margin-bottom:10px}
+.route p{color:var(--muted);font-size:15px;flex:1}
+.route__tag{display:inline-block;margin-top:18px;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--paper-2);color:var(--brick-dark)}
+.route--special{background:var(--night);color:var(--on-night);border-color:var(--night)}
+.route--special p{color:var(--on-night-muted)}
+.route--special .route__n{color:#D98A73}
+.route--special .route__tag{background:rgba(239,230,214,.12);color:var(--on-night)}
+@media (min-width:980px){.route--wide{grid-column:span 2}}
+
+/* ---------- как это устроено ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:34px;margin-top:44px;counter-reset:s}
+.step{counter-increment:s;border-top:2px solid var(--brick);padding-top:18px}
+.step::before{content:"0" counter(s);font:700 15px var(--serif);color:#D98A73;letter-spacing:.1em}
+.step h3{font-size:21px;margin:8px 0}
+.step p{color:var(--on-night-muted);font-size:15px}
+.step a{color:var(--on-night)}
+
+/* ---------- особый маршрут ---------- */
+.feature{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:start}
+.feature__card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
+.feature__card dl{display:grid;gap:14px}
+.feature__card dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.feature__card dd{font:700 22px/1.25 var(--serif)}
+.feature__card dd small{display:block;font:500 14px var(--sans);color:var(--muted);margin-top:2px}
+.list{list-style:none;margin:20px 0 0;display:grid;gap:10px}
+.list li{padding-left:26px;position:relative;color:var(--muted)}
+.list li::before{content:"";position:absolute;left:0;top:.6em;width:12px;height:2px;background:var(--brick)}
+@media (max-width:860px){.feature{grid-template-columns:1fr}}
+
+/* ---------- мерч ---------- */
+.merch{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-top:44px}
+.item{background:var(--night-2);border:1px solid rgba(239,230,214,.12);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.item img{aspect-ratio:2/3;object-fit:cover;width:100%;background:#120d0b}
+.item__body{padding:18px 20px 22px}
+.item h3{font-size:19px;margin-bottom:6px}
+.item p{font-size:14px;color:var(--on-night-muted)}
+.item b{display:block;margin-top:10px;font:700 22px var(--serif);color:#E2A08C}
+.merch-foot{margin-top:34px;display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;color:var(--on-night-muted)}
+.merch-foot p{max-width:560px}
+
+/* ---------- о нас / контакты ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px)}
+.about p+p{margin-top:14px}
+.about p{color:var(--muted)}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.contact span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.contact a,.contact b{display:block;margin-top:6px;font:700 21px/1.3 var(--serif);text-decoration:none}
+.contact a:hover{color:var(--brick)}
+.contact small{display:block;margin-top:4px;color:var(--muted);font-size:14px}
+
+.foot{background:var(--night);color:var(--on-night-muted);padding:38px 0;font-size:13px}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot a{color:var(--on-night)}
+
+/* появление при прокрутке — только если есть JS */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="logo" href="#top">Тур <b>в Ковров</b></a>
+    <ul class="nav__links" id="menu">
+      <li><a href="#routes">Маршруты</a></li>
+      <li><a href="#how">Как записаться</a></li>
+      <li><a href="#church">Храмы</a></li>
+      <li><a href="#merch">Мерч</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <a class="nav__call" href="tel:+79100959623">+7 (910) 095-96-23</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Экскурсии · мерч · Ковров</div>
+    <h1>Откройте Ковров<br><em>с новой стороны</em></h1>
+    <p>Рассказываем историю Коврова так, что хочется слушать. Ведём по купеческим улицам, заводским кварталам и старым храмам — и создаём мерч, который хочется носить.</p>
+    <div class="btns">
+      <a class="btn" href="#routes">Выбрать маршрут</a>
+      <a class="btn btn--ghost" href="tel:+79100959623" data-goal="tel">Позвонить и записаться</a>
+    </div>
+    <div class="hero__facts">
+      <div><b>7</b>авторских маршрутов</div>
+      <div><b>1,5 ч</b>пешая прогулка</div>
+      <div><b>по субботам</b>в 11:00 или 13:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- ближайшая экскурсия: данные в NEXT_TOUR внизу страницы; после даты блок скрывается сам -->
+<section class="next" id="next" hidden>
+  <div class="wrap">
+    <div class="ticket" id="ticket">
+      <div class="ticket__date"><b id="nextDay"></b><span id="nextMonth"></span></div>
+      <div>
+        <div class="eyebrow">Ближайшая экскурсия</div>
+        <h2 id="nextTitle"></h2>
+        <p id="nextMeta"></p>
+      </div>
+      <a class="btn" href="tel:+79100959623" data-goal="tel">Записаться</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="routes">
+  <div class="wrap">
+    <div class="eyebrow rv">Маршруты</div>
+    <h2 class="s-title rv">Семь способов узнать город</h2>
+    <p class="s-lead rv">Шесть городских маршрутов и один особый — по храмам с настоятелем. Какой идём в ближайшую субботу, выбираем вместе: пишите в группе или звоните.</p>
+    <div class="routes">
+      <article class="route rv">
+        <div class="route__n">01</div>
+        <h3>Сердце старого Коврова</h3>
+        <p>Прогулка по старым улочкам, где каждый дом — свидетель взлётов и падений купеческих династий, революционных бурь и оружейной славы. Храмы, особняки, старинные надгробия и места памяти — Ковров предстанет городом-легендой.</p>
+        <span class="route__tag">Исторический центр</span>
+      </article>
+      <article class="route rv">
+        <div class="route__n">02</div>
+        <h3>Ковров базарный</h3>
+        <p>Как купцы сколачивали капитал и что такое «важня». Базарная площадь — место, где решались судьбы и делались состояния: Торговые ряды, здание-конструктивизм с сохранившейся надписью, дом Дунаевых.</p>
+        <span class="route__tag">Купцы и торговля</span>
+      </article>
+      <article class="route rv">
+        <div class="route__n">03</div>
+        <h3>Тайны старого парка</h3>
+        <p>От сгоревшей часовни до погребённого Сталина. Пройдём по аллеям парка КЭЗ, где смешались святость, культ и забвение: часовня, сгоревшая ещё до революции, и памятник, который тоже исчез.</p>
+        <span class="route__tag">Парк КЭЗ</span>
+      </article>
+      <article class="route rv">
+        <div class="route__n">04</div>
+        <h3>Треумовы: фабричная империя</h3>
+        <p>Фабрика Треумовых — целый город в городе: дома для рабочих, баня, училище, часовня. Увидим, что осталось от империи, и услышим истории взлётов и драмы одной семьи.</p>
+        <span class="route__tag">Фабрика</span>
+      </article>
+      <article class="route rv">
+        <div class="route__n">05</div>
+        <h3>Былинный сказ о дубе том…</h3>
+        <p>Под этим дубом сам князь Андрей Боголюбский искал спасения во время вьюги. Легенды и были: старый Ковров хранит память о временах, когда по здешним лесам бродили богатыри.</p>
+        <span class="route__tag">Легенды</span>
+      </article>
+      <article class="route rv">
+        <div class="route__n">06</div>
+        <h3>Рельсы времени</h3>
+        <p>Мастерские, завод и революция. Рельсы, которые изменили Ковров: от первых паровозов до Экскаваторного завода, от мастерских — кузницы революции — до наших дней.</p>
+        <span class="route__tag">Индустрия</span>
+      </article>
+      <article class="route route--special route--wide rv">
+        <div class="route__n">07 · особый маршрут</div>
+        <h3>Белокаменные церкви Коврова</h3>
+        <p>Христорождественский собор и церковь Иоанна Воина — история изнутри: росписи, иконы, приделы и открытый диалог. Рассказывает благочинный Ковровского округа иерей Павел Андреев.</p>
+        <span class="route__tag">С настоятелем</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-tone="dark" id="how">
+  <div class="wrap">
+    <div class="eyebrow rv">Как записаться</div>
+    <h2 class="s-title rv">Просто, без предоплат и анкет</h2>
+    <p class="s-lead rv">Экскурсии камерные — мест ограничено, чтобы каждый мог задать вопрос и услышать ответ.</p>
+    <div class="steps">
+      <div class="step rv">
+        <h3>Выберите маршрут</h3>
+        <p>Посмотрите семь маршрутов выше. Не можете выбрать — в группе ВКонтакте перед каждой субботой проходит голосование.</p>
+      </div>
+      <div class="step rv">
+        <h3>Напишите «+»</h3>
+        <p>Поставьте «+» в комментариях под анонсом в <a href="https://vk.ru/turkovrov" target="_blank" rel="noopener" data-goal="vk">группе ВКонтакте</a> — или позвоните <a href="tel:+79100959623" data-goal="tel">8-910-095-96-23</a>.</p>
+      </div>
+      <div class="step rv">
+        <h3>Приходите на старт</h3>
+        <p>Место встречи называем в анонсе — как правило, у Музея природы и этнографии (ул. Фёдорова, 6). Одевайтесь по погоде: идём по улице.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="church">
+  <div class="wrap feature">
+    <div>
+      <div class="eyebrow rv">Особый маршрут</div>
+      <h2 class="s-title rv">Историю изнутри расскажет тот, кто ей живёт</h2>
+      <p class="s-lead rv">Мы можем долго пересказывать факты, но есть вещи, которые понятны только из первых уст. Храмы Коврова показывает отец Павел Андреев — настоятель храма Иоанна Воина и благочинный Ковровского округа.</p>
+      <ul class="list rv">
+        <li>какие росписи украшают своды собора и почему они появились именно там;</li>
+        <li>какие иконы размещены в храмах и как они туда попали;</li>
+        <li>как устроены церкви и их приделы — с деталями, недоступными обычному туристу.</li>
+      </ul>
+      <div class="btns rv" style="margin-top:28px">
+        <a class="btn" href="tel:+79100959623" data-goal="tel">Узнать о ближайшей дате</a>
+      </div>
+    </div>
+    <aside class="feature__card rv" aria-label="Условия экскурсии по храмам">
+      <dl>
+        <div><dt>Старт</dt><dd>У ворот Христо-Рождественской церкви</dd></div>
+        <div><dt>Длительность</dt><dd>1,5 часа<small>при большом интересе группы — дольше</small></dd></div>
+        <div><dt>Стоимость</dt><dd>500 ₽<small>1 000 ₽ — вместе с обедом в трапезной церкви Иоанна Воина</small></dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="section" data-tone="dark" id="merch">
+  <div class="wrap">
+    <div class="eyebrow rv">Мерч Коврова</div>
+    <h2 class="s-title rv">Сувениры с характером</h2>
+    <p class="s-lead rv">Одежда и аксессуары с авторскими принтами: зайцы-механоиды, Торговые ряды, старый город, белокаменные церкви. Экскурсантам — скидка 30% на изделия с Торговыми рядами.</p>
+    <div class="merch">
+      <article class="item rv">
+        <img loading="lazy" src="img/merch-scarf.webp" width="634" height="948" alt="Платок «Белокаменные церкви Коврова»">
+        <div class="item__body"><h3>Платок «Белокаменные церкви»</h3><p>Церкви Коврова в росписи</p><b>2 950 ₽</b></div>
+      </article>
+      <article class="item rv">
+        <img loading="lazy" src="img/merch-sweatshirt.webp" width="640" height="960" alt="Свитшот-унисекс «Малые города»">
+        <div class="item__body"><h3>Свитшот «Малые города»</h3><p>«Страны большие достижения стартуют в малых городах»</p><b>3 400 ₽</b></div>
+      </article>
+      <article class="item rv">
+        <img loading="lazy" src="img/merch-tshirt.webp" width="640" height="960" alt="Футболка-унисекс «Заяц-мотоболист»">
+        <div class="item__body"><h3>Футболка «Заяц-мотоболист»</h3><p>Унисекс, мотоклуб «Ковров»</p><b>1 400 ₽</b></div>
+      </article>
+      <article class="item rv">
+        <img loading="lazy" src="img/merch-shopper.webp" width="640" height="960" alt="Шопер «Заяц-мотоболист»">
+        <div class="item__body"><h3>Шопер «Заяц-мотоболист»</h3><p>Хлопковая сумка, тот же принт</p><b>1 100 ₽</b></div>
+      </article>
+    </div>
+    <div class="merch-foot rv">
+      <p>Это только часть: жилеты, варежки, рюкзаки, худи, пыльники и другие вещи — в каталоге ВКонтакте.</p>
+      <a class="btn btn--ghost" href="https://vk.ru/market-196755644?section=album_15" target="_blank" rel="noopener" data-goal="vk">Весь мерч ВКонтакте →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-tone="alt" id="about">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow rv">О проекте</div>
+      <h2 class="s-title rv">Город, который хочется разглядывать</h2>
+    </div>
+    <div class="rv">
+      <p>«Тур в Ковров» — это экскурсии по индустриальным и историческим местам города и фирменные сувениры с характером. Мы выбираем маршруты вместе с теми, кто ходит с нами, и разбираем не только даты, но и истории людей, которые строили Ковров.</p>
+      <p>Экскурсии — живой разговор, а не монолог гида: спрашивайте, делитесь своими семейными историями, спорьте. Поэтому группы небольшие, а гуляем мы в любую погоду — сезон длится, пока не ляжет снег.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacts">
+  <div class="wrap">
+    <div class="eyebrow rv">Контакты</div>
+    <h2 class="s-title rv">Запишитесь или задайте вопрос</h2>
+    <div class="contacts">
+      <div class="contact rv"><span>Телефон</span><a href="tel:+79100959623" data-goal="tel">+7 (910) 095-96-23</a><small>Виктория — запись на экскурсии и заказ мерча</small></div>
+      <div class="contact rv"><span>ВКонтакте</span><a href="https://vk.ru/turkovrov" target="_blank" rel="noopener" data-goal="vk">vk.ru/turkovrov</a><small>Анонсы, голосования за маршрут, запись в комментариях</small></div>
+      <div class="contact rv"><span>Адрес</span><b>Ковров, ул. Брюсова, 25</b><small>Старт экскурсии называем в анонсе</small></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <small>© 2026 «Тур в Ковров», Ковров, Владимирская область</small>
+    <div><a href="https://vk.ru/turkovrov" target="_blank" rel="noopener">ВКонтакте</a> · <a href="#top">Наверх ↑</a></div>
+  </div>
+</footer>
+
+<script>
+/* ===== данные: правьте только этот блок ===== */
+const YM_ID = 0;   // номер счётчика Яндекс Метрики; пока 0 — Метрика не подключается
+const NEXT_TOUR = { // ближайшая экскурсия; когда время пройдёт, блок скроется сам
+  title: 'Ковров базарный',
+  start: '2026-10-03T11:00:00+03:00',
+  place: 'Старт: Музей природы и этнографии, ул. Фёдорова, 6',
+  note: 'Запись: «+» в комментариях или по телефону'
+};
+
+/* ===== Яндекс Метрика (подключается, когда задан YM_ID) ===== */
+if (YM_ID) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+YM_ID,'ym');
+  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+}
+// цели Метрики: tel — звонок, vk — переход в ВКонтакте
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-goal]');
+  if (a && YM_ID) { try { ym(YM_ID, 'reachGoal', a.dataset.goal); } catch (_) {} }
+});
+
+/* ===== ближайшая экскурсия ===== */
+(function () {
+  const d = new Date(NEXT_TOUR.start);
+  if (isNaN(d) || d.getTime() < Date.now()) return;
+  const tz = { timeZone: 'Europe/Moscow' };
+  document.getElementById('nextDay').textContent = d.toLocaleDateString('ru-RU', { ...tz, day: 'numeric' });
+  document.getElementById('nextMonth').textContent =
+    d.toLocaleDateString('ru-RU', { ...tz, month: 'long' }) + ', ' + d.toLocaleDateString('ru-RU', { ...tz, weekday: 'long' });
+  document.getElementById('nextTitle').textContent = NEXT_TOUR.title;
+  document.getElementById('nextMeta').textContent =
+    'В ' + d.toLocaleTimeString('ru-RU', { ...tz, hour: '2-digit', minute: '2-digit' }) + ' · ' + NEXT_TOUR.place + ' · ' + NEXT_TOUR.note;
+  document.getElementById('next').hidden = false;
+})();
+
+/* ===== шапка и меню ===== */
+const nav = document.getElementById('nav'), burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');
+}));
+
+/* ===== появление блоков при прокрутке ===== */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
