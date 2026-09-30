@@ -126,8 +126,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 .scroll-hint__btn svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 @keyframes hintBob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
 @media (prefers-reduced-motion:reduce){.scroll-hint__btn{animation:none}}
-/* на телефоне первый экран длиннее окна и подсказка ложится на текст — подкладываем затемнение снизу */
-@media (max-width:760px){.scroll-hint{padding:56px 0 14px;background:linear-gradient(180deg,rgba(26,25,24,0),rgba(26,25,24,.94) 60%)}.scroll-hint__btn{width:48px;height:48px}.scroll-hint__label{font-size:21px}}
+/* если первый экран длиннее окна, подсказка ложится на его текст — подкладываем затемнение снизу.
+   Класс ставит скрипт; когда первый экран влезает целиком, под подсказкой светлая бумага и затемнение не нужно */
+.scroll-hint--shade{padding-top:56px;background:linear-gradient(180deg,rgba(26,25,24,0),rgba(26,25,24,.94) 60%)}
+/* первый экран влез целиком — под подсказкой уже светлая бумага: подложка того же цвета, без тёмной тени у надписи */
+.scroll-hint--paper{padding-top:56px;background:linear-gradient(180deg,rgba(233,229,222,0),rgba(233,229,222,.96) 60%)}
+.scroll-hint--paper .scroll-hint__label{color:var(--accent-text);text-shadow:none}
+@media (max-width:760px){.scroll-hint{padding-bottom:14px}.scroll-hint__btn{width:48px;height:48px}.scroll-hint__label{font-size:21px}}
 .nav__in{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
 .logo{text-decoration:none;display:flex;align-items:baseline;gap:6px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:20px}
 .logo span{font:700 22px var(--hand);text-transform:none;color:var(--accent-dark);letter-spacing:0}
@@ -815,6 +820,16 @@ document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', ()
 
 // подсказка «листайте вниз»: по нажатию — к следующему блоку (билет ближайшей экскурсии или «Что вас ждёт»)
 scrollHint.classList.toggle('is-hidden', scrollY > 40);
+// подложка под подсказкой в цвет того, что под ней: тёмная, если низ первого экрана уходит за край окна, иначе светлая
+const heroEl = document.querySelector('.hero');
+const shadeHint = () => {
+  const overHero = heroEl.getBoundingClientRect().bottom > innerHeight - 8;
+  scrollHint.classList.toggle('scroll-hint--shade', overHero);
+  scrollHint.classList.toggle('scroll-hint--paper', !overHero);
+};
+shadeHint();
+addEventListener('resize', shadeHint);
+addEventListener('load', shadeHint);
 document.getElementById('scrollHintGo').addEventListener('click', () => {
   const next = document.getElementById('next');
   (next.hidden ? document.getElementById('what') : next).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
