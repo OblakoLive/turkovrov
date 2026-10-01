@@ -346,6 +346,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<!-- Яндекс Метрика для посетителей без JavaScript (основной код — в конце страницы, YM_ID) -->
+<noscript><div><img src="https://mc.yandex.ru/watch/113251038" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <header class="nav" id="nav">
   <div class="wrap nav__in">
@@ -676,7 +678,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 
 <script>
 /* ===== данные: правьте только этот блок ===== */
-const YM_ID = 0;   // номер счётчика Яндекс Метрики; пока 0 — Метрика не подключается
+const YM_ID = 113251038;   // счётчик Яндекс Метрики «Тур Ковров» (аккаунт wofuz.pro); 0 — отключить Метрику
 const NEXT_TOUR = { // запасной вариант, если с сервера не пришли данные из ВКонтакте (data/vk.json)
   title: 'Ковров базарный',
   start: '2026-10-03T11:00:00+03:00',
@@ -688,7 +690,7 @@ if (YM_ID) {
   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
   (window,document,'script','https://mc.yandex.ru/metrika/tag.js?id='+YM_ID,'ym');
-  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+  ym(YM_ID,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
 }
 // цели Метрики: tel — звонок, vk — переход в ВКонтакте
 document.addEventListener('click', e => {
