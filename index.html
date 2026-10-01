@@ -250,7 +250,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 .fact__pic{margin:-8px -6px 18px;transform:rotate(-1.5deg)}
 .fact:nth-child(even) .fact__pic{transform:rotate(1.5deg)}
 .fact__pic .cut{aspect-ratio:16/10}
-.fact b{display:block;font-weight:900;font-size:52px;line-height:.95;letter-spacing:-.04em;color:var(--accent-dark)}
+.fact b{display:block;white-space:nowrap;font-weight:900;font-size:52px;line-height:.95;letter-spacing:-.04em;color:var(--accent-dark)}
 .fact h3{font-weight:800;text-transform:uppercase;font-size:17px;letter-spacing:-.01em;margin:14px 0 8px;line-height:1.25}
 .fact p{color:var(--on-dark-muted);font-size:15px}
 .fact small{display:block;margin-top:14px;font:700 21px/1.1 var(--hand);color:var(--on-dark)}
@@ -778,6 +778,18 @@ document.querySelectorAll('.arrow').forEach(b => b.addEventListener('click', () 
   const card = factsTrack.querySelector('.fact');
   factsTrack.scrollBy({ left: (card.offsetWidth + 20) * +b.dataset.dir, behavior: reduceMotion ? 'auto' : 'smooth' });
 }));
+
+/* ===== факты: крупная надпись («Ковровец», «139 лет») ужимается до ширины карточки ===== */
+function fitFacts() {
+  document.querySelectorAll('.fact b').forEach(b => {
+    b.style.fontSize = '';
+    let size = parseFloat(getComputedStyle(b).fontSize);
+    while (b.scrollWidth > b.clientWidth && size > 24) b.style.fontSize = (size -= 2) + 'px';
+  });
+}
+fitFacts();
+addEventListener('resize', fitFacts);
+document.fonts && document.fonts.ready.then(fitFacts); // ширина зависит от шрифта — пересчитываем, когда он загрузится
 
 /* ===== шапка и меню ===== */
 const nav = document.getElementById('nav'), burger = document.getElementById('burger');
