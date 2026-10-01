@@ -245,6 +245,15 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 .stop--special p{color:var(--on-dark-muted)}
 .stop--special .hand{color:var(--accent-dark)}
 .stop--special .stop__meta span{border-color:rgba(237,232,224,.2);color:var(--on-dark-muted)}
+/* кнопки «позвонить» и «группа ВКонтакте» в карточке маршрута: оранжевые кружки, как номера на тропе,
+   но меньше и внутри карточки — справа в строке плашек (на узкой карточке переносятся на свою строку) */
+.stop__meta{align-items:center}
+.stop__act{display:flex;gap:10px;margin-left:auto}
+.act{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px rgba(212,87,42,.16);transition:background .2s,transform .2s}
+.act:hover{background:#B8461E;transform:translateY(-2px)}
+.act svg{width:20px;height:20px;fill:currentColor}
+.stop--special .act{box-shadow:0 0 0 4px rgba(238,116,71,.22)}
+@media (prefers-reduced-motion:reduce){.act:hover{transform:none}}
 .trail__end{position:relative;z-index:1;text-align:center;font-size:30px;margin-top:6px}
 @media (max-width:760px){
   .stop{width:auto;margin-left:52px !important;margin-right:0 !important;padding:22px 20px}
@@ -813,6 +822,40 @@ function tornPhoto(el, seed) {
   el.style.setProperty('--photo-clip', `polygon(${photo.join(',')})`);
 }
 document.querySelectorAll('[data-cut]').forEach((el, k) => tornPhoto(el, k * 104729 + 7));
+
+/* ===== в каждой карточке маршрута — «позвонить» и «группа ВКонтакте» ===== */
+(function () {
+  const PHONE = '+79100959623', PHONE_PRETTY = '+7 (910) 095-96-23', VK_GROUP = 'https://vk.ru/turkovrov';
+  const ICON_PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>';
+  const ICON_VK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.79 16.24s.29-.03.44-.19c.13-.15.13-.43.13-.43s-.02-1.3.58-1.5c.59-.19 1.34 1.26 2.14 1.82.6.42 1.06.33 1.06.33l2.14-.03s1.12-.07.59-.96c-.04-.07-.31-.66-1.59-1.87-1.34-1.26-1.16-1.06.45-3.25.98-1.33 1.38-2.14 1.25-2.49-.12-.33-.84-.24-.84-.24l-2.41.01s-.18-.02-.31.06c-.13.08-.21.26-.21.26s-.38 1.03-.89 1.91c-1.07 1.85-1.5 1.95-1.67 1.83-.41-.27-.31-1.08-.31-1.65 0-1.79.27-2.54-.52-2.73-.26-.07-.45-.11-1.12-.11-.86-.01-1.59 0-2 .21-.27.14-.49.44-.36.46.16.02.52.1.71.36.25.34.24 1.11.24 1.11s.14 2.11-.33 2.37c-.33.18-.77-.19-1.73-1.87-.49-.86-.86-1.81-.86-1.81s-.07-.18-.2-.27c-.15-.12-.37-.15-.37-.15l-2.29.01s-.34.01-.47.16C3.94 7.72 4.04 8 4.04 8s1.79 4.26 3.82 6.4c1.86 1.97 3.97 1.84 3.97 1.84h.96z"/></svg>';
+
+  document.querySelectorAll('.stop').forEach(stop => {
+    const route = stop.querySelector('h3').textContent.trim();
+    const box = document.createElement('div');
+    box.className = 'stop__act';
+
+    const tel = document.createElement('a');
+    tel.className = 'act';
+    tel.href = 'tel:' + PHONE;
+    tel.dataset.goal = 'tel';
+    tel.title = 'Позвонить: ' + PHONE_PRETTY; // на компьютере звонить нечем — при наведении видно номер
+    tel.setAttribute('aria-label', 'Позвонить и записаться на «' + route + '», ' + PHONE_PRETTY);
+    tel.innerHTML = ICON_PHONE;
+
+    const vk = document.createElement('a');
+    vk.className = 'act';
+    vk.href = VK_GROUP;
+    vk.target = '_blank';
+    vk.rel = 'noopener';
+    vk.dataset.goal = 'vk';
+    vk.title = 'Группа «Тур Ковров» ВКонтакте';
+    vk.setAttribute('aria-label', 'Группа «Тур Ковров» ВКонтакте — анонсы и запись на «' + route + '»');
+    vk.innerHTML = ICON_VK;
+
+    box.append(tel, vk);
+    stop.querySelector('.stop__meta').append(box);
+  });
+})();
 
 /* ===== пунктирная тропа через маршруты ===== */
 const trail = document.getElementById('trail');
