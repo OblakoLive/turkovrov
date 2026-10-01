@@ -184,11 +184,21 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 .ticket p{color:var(--muted);font-size:15px}
 .ticket #nextMeta{display:grid;gap:4px;margin-top:4px}
 .ticket #nextMeta b{color:var(--ink);font-weight:700}
+.ticket [hidden]{display:none !important}
+/* режим «свежий пост из ВКонтакте»: вместо даты — фото поста, заголовок мельче, текст обрезается */
+.ticket__pic{width:190px;transform:rotate(-2deg);margin:-6px 0}
+.ticket__pic .cut{aspect-ratio:4/3}
+.ticket__more{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:var(--accent-text);text-decoration:none}
+.ticket__more:hover{text-decoration:underline}
+.ticket--post h2{font-size:clamp(19px,2.2vw,24px);line-height:1.12}
+.ticket #nextMeta.ticket__excerpt{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .next{margin-top:clamp(-40px,-3vw,-20px);position:relative;z-index:4}
 @media (max-width:760px){
   .ticket{grid-template-columns:1fr;padding:22px}
   .ticket__date{border-right:0;border-bottom:2px dashed var(--line);padding:0 0 14px;text-align:left;display:flex;align-items:baseline;gap:12px}
   .ticket .btn{width:100%}
+  .ticket__pic{width:100%;margin:0;transform:rotate(-1deg)}
+  .ticket__pic .cut{aspect-ratio:16/10}
 }
 
 /* ---------- «Что вас ждёт» ---------- */
@@ -383,17 +393,20 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
   </button>
 </div>
 
-<!-- ближайшая экскурсия: данные в NEXT_TOUR внизу страницы; после даты блок скрывается сам -->
+<!-- ближайшая экскурсия / свежий пост: data/vk.json кладёт обработчик на сервере (.server/vk_latest.py)
+     из постов группы ВКонтакте; если файла нет — запасной вариант NEXT_TOUR внизу страницы -->
 <section class="next" id="next" hidden>
   <div class="wrap">
-    <div class="ticket">
-      <div class="ticket__date"><b id="nextDay"></b><span id="nextMonth"></span></div>
+    <div class="ticket" id="ticket">
+      <div class="ticket__date" id="nextDate"><b id="nextDay"></b><span id="nextMonth"></span></div>
+      <figure class="ticket__pic cut-wrap" id="nextPic" hidden><div class="cut" data-cut><img id="nextImg" src="data:," alt=""></div></figure>
       <div>
-        <span class="hand">ближайшая экскурсия</span>
+        <span class="hand" id="nextLabel">ближайшая экскурсия</span>
         <h2 id="nextTitle"></h2>
         <p id="nextMeta"></p>
+        <a class="ticket__more" id="nextMore" href="https://vk.ru/turkovrov" target="_blank" rel="noopener" data-goal="vk" hidden>Подробнее во ВКонтакте →</a>
       </div>
-      <a class="btn" href="tel:+79100959623" data-goal="tel">Записаться</a>
+      <a class="btn" id="nextBtn" href="tel:+79100959623" data-goal="tel">Записаться</a>
     </div>
   </div>
 </section>
@@ -655,7 +668,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent-dark);outlin
 <script>
 /* ===== данные: правьте только этот блок ===== */
 const YM_ID = 0;   // номер счётчика Яндекс Метрики; пока 0 — Метрика не подключается
-const NEXT_TOUR = { // ближайшая экскурсия; когда время пройдёт, блок скроется сам
+const NEXT_TOUR = { // запасной вариант, если с сервера не пришли данные из ВКонтакте (data/vk.json)
   title: 'Ковров базарный',
   start: '2026-10-03T11:00:00+03:00',
   place: 'Музей природы и этнографии, ул. Фёдорова, 6',
@@ -675,27 +688,85 @@ document.addEventListener('click', e => {
   if (a && YM_ID) { try { ym(YM_ID, 'reachGoal', a.dataset.goal); } catch (_) {} }
 });
 
-/* ===== ближайшая экскурсия ===== */
+/* ===== ближайшая экскурсия или свежий пост из группы ВКонтакте ===== */
+// Обработчик на сервере раз в 10 минут кладёт data/vk.json: tour — ближайший анонс экскурсии,
+// latest — самый свежий пост. Тексты из ВКонтакте вставляем только как текст (textContent), не как HTML.
 (function () {
-  const d = new Date(NEXT_TOUR.start);
-  if (isNaN(d) || d.getTime() < Date.now()) return;
-  const tz = { timeZone: 'Europe/Moscow' };
-  document.getElementById('nextDay').textContent = d.toLocaleDateString('ru-RU', { ...tz, day: 'numeric' });
-  document.getElementById('nextMonth').textContent =
-    d.toLocaleDateString('ru-RU', { ...tz, day: 'numeric', month: 'long' }).replace(/^\d+\s/, '') + ', ' + d.toLocaleDateString('ru-RU', { ...tz, weekday: 'short' });
-  document.getElementById('nextTitle').textContent = NEXT_TOUR.title;
+  const MSK = { timeZone: 'Europe/Moscow' };
+  const $ = id => document.getElementById(id);
+  const dayMonth = d => d.toLocaleDateString('ru-RU', { ...MSK, day: 'numeric', month: 'long' });
+
+  function showDate(d, withWeekday) {
+    $('nextDay').textContent = d.toLocaleDateString('ru-RU', { ...MSK, day: 'numeric' });
+    $('nextMonth').textContent = dayMonth(d).replace(/^\d+\s/, '') +
+      (withWeekday ? ', ' + d.toLocaleDateString('ru-RU', { ...MSK, weekday: 'short' }) : '');
+  }
+
   // каждая деталь — своей строкой: «Время», «Старт», «Запись»
-  const meta = document.getElementById('nextMeta');
-  [['Время', 'в ' + d.toLocaleTimeString('ru-RU', { ...tz, hour: '2-digit', minute: '2-digit' })],
-   ['Старт', NEXT_TOUR.place],
-   ['Запись', NEXT_TOUR.note]].forEach(([label, text]) => {
-    const row = document.createElement('span');
-    const b = document.createElement('b');
-    b.textContent = label + ':';
-    row.append(b, ' ' + text);
-    meta.append(row);
-  });
-  document.getElementById('next').hidden = false;
+  function rows(list) {
+    const meta = $('nextMeta');
+    meta.textContent = '';
+    list.filter(([, text]) => text).forEach(([label, text]) => {
+      const row = document.createElement('span');
+      const b = document.createElement('b');
+      b.textContent = label + ':';
+      row.append(b, ' ' + text);
+      meta.append(row);
+    });
+  }
+
+  function showTour(t) {
+    const d = new Date(t.start);
+    showDate(d, true);
+    $('nextLabel').textContent = 'ближайшая экскурсия';
+    $('nextTitle').textContent = t.title;
+    rows([['Время', t.has_time ? 'в ' + d.toLocaleTimeString('ru-RU', { ...MSK, hour: '2-digit', minute: '2-digit' }) : t.when],
+          ['Старт', t.place],
+          ['Цена', t.price],
+          ['Запись', t.signup || '«+» в комментариях к посту или по телефону']]);
+    if (t.url) { $('nextMore').href = t.url; $('nextMore').hidden = false; }
+    $('next').hidden = false;
+  }
+
+  function showPost(p) {
+    $('ticket').classList.add('ticket--post');
+    const published = new Date(p.published);
+    if (p.photo) {
+      $('nextImg').src = p.photo;
+      $('nextImg').alt = p.title;
+      $('nextDate').hidden = true;
+      $('nextPic').hidden = false;
+    } else {
+      showDate(published, false);
+    }
+    $('nextLabel').textContent = 'свежее в группе · ' + dayMonth(published);
+    $('nextTitle').textContent = p.title;
+    $('nextMeta').textContent = p.excerpt;
+    $('nextMeta').classList.add('ticket__excerpt');
+    const btn = $('nextBtn');
+    btn.textContent = 'Читать во ВКонтакте';
+    btn.href = p.url;
+    btn.target = '_blank';
+    btn.rel = 'noopener';
+    btn.dataset.goal = 'vk';
+    $('next').hidden = false;
+    if (p.photo) tornPhoto($('nextPic').querySelector('.cut'), 4242); // рваные края — по настоящему размеру фото
+  }
+
+  async function init() {
+    let data = null;
+    try {
+      const r = await fetch('data/vk.json', { cache: 'no-cache' });
+      if (r.ok) data = await r.json();
+    } catch (_) { /* нет связи с сервером — ниже запасной вариант */ }
+    const now = Date.now();
+    if (data && data.tour && new Date(data.tour.start) > now) return showTour(data.tour);
+    if (data && data.latest) return showPost(data.latest);
+    if (new Date(NEXT_TOUR.start) > now) {
+      showTour({ title: NEXT_TOUR.title, start: NEXT_TOUR.start, has_time: true, place: NEXT_TOUR.place, signup: NEXT_TOUR.note });
+    }
+  }
+  init();
 })();
 
 /* ===== рваная бумага: кромки секций и края фото ===== */
