@@ -671,8 +671,7 @@ const YM_ID = 0;   // номер счётчика Яндекс Метрики; �
 const NEXT_TOUR = { // запасной вариант, если с сервера не пришли данные из ВКонтакте (data/vk.json)
   title: 'Ковров базарный',
   start: '2026-10-03T11:00:00+03:00',
-  place: 'Музей природы и этнографии, ул. Фёдорова, 6',
-  note: '«+» в комментариях или по телефону'
+  place: 'Музей природы и этнографии, ул. Фёдорова, 6'
 };
 
 /* ===== Яндекс Метрика (подключается, когда задан YM_ID) ===== */
@@ -702,7 +701,7 @@ document.addEventListener('click', e => {
       (withWeekday ? ', ' + d.toLocaleDateString('ru-RU', { ...MSK, weekday: 'short' }) : '');
   }
 
-  // каждая деталь — своей строкой: «Время», «Старт», «Запись»
+  // каждая деталь — своей строкой: «Время», «Старт» (записываются кнопкой «Записаться» и через пост во ВКонтакте)
   function rows(list) {
     const meta = $('nextMeta');
     meta.textContent = '';
@@ -722,8 +721,7 @@ document.addEventListener('click', e => {
     $('nextTitle').textContent = t.title;
     rows([['Время', t.has_time ? 'в ' + d.toLocaleTimeString('ru-RU', { ...MSK, hour: '2-digit', minute: '2-digit' }) : t.when],
           ['Старт', t.place],
-          ['Цена', t.price],
-          ['Запись', t.signup || '«+» в комментариях к посту или по телефону']]);
+          ['Цена', t.price]]);
     if (t.url) { $('nextMore').href = t.url; $('nextMore').hidden = false; }
     $('next').hidden = false;
   }
@@ -763,7 +761,7 @@ document.addEventListener('click', e => {
     if (data && data.tour && new Date(data.tour.start) > now) return showTour(data.tour);
     if (data && data.latest) return showPost(data.latest);
     if (new Date(NEXT_TOUR.start) > now) {
-      showTour({ title: NEXT_TOUR.title, start: NEXT_TOUR.start, has_time: true, place: NEXT_TOUR.place, signup: NEXT_TOUR.note });
+      showTour({ title: NEXT_TOUR.title, start: NEXT_TOUR.start, has_time: true, place: NEXT_TOUR.place, url: 'https://vk.ru/turkovrov' });
     }
   }
   init();
